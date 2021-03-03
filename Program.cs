@@ -30,7 +30,8 @@ namespace The_barista
 
             IBeverage macchiato = new FluentEspresso()
                 .AddCoffeeBeans(new Beans(4, "Arabica"))
-                .AddMilkFoam()
+                .AddMilk()
+                .AddChocolateSyrup()
                 .ToBeverage();
 
             Console.WriteLine();
@@ -52,16 +53,15 @@ namespace The_barista
         IFluentEspresso AddMilkFoam();
         IFluentEspresso AddCoffeeBeans(Beans beans);
         IFluentEspresso AddGrindedBeans();
+        IFluentEspresso AddChocolateSyrup();
         IBeverage ToBeverage();
 
     }
 
 
-
     public class FluentEspresso : IFluentEspresso
     {
         public List<string> Ingredients { get; }
-
 
         public FluentEspresso()
         {
@@ -103,6 +103,12 @@ namespace The_barista
 
             return this;
         }
+        public IFluentEspresso AddChocolateSyrup()
+        {
+            Ingredients.Add("Chocolate Syrup");
+
+            return this;
+        }
 
         public IBeverage ToBeverage()
         {
@@ -122,8 +128,8 @@ namespace The_barista
             // Tänk ifall drinken är null eller har andra ingredienser som vi inte har en klass av som ex. Espresso, Latte, ...? 
             Console.WriteLine(desiredDrink.Name);
             return desiredDrink;
-
         }
+
     }
 
     public class Americano : IBeverage
@@ -194,16 +200,16 @@ namespace The_barista
         CupType IBeverage.CupType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 
-
-    // Name saknas för vi måste lägga till choloate Syrup i IFluentEspresso...
     public class Mocha : IBeverage
     {
         public List<string> Ingredients { get; private set; }
         public string Name { get; private set; }
+        private string _name = "Mocha";
 
         public Mocha()
         {
-            Ingredients = new List<string>() { "Coffee Beans", "Chocolate Syrup", "Milk Foam" };
+            Name = _name;
+            Ingredients = new List<string>() { "Coffee Beans", "Chocolate Syrup", "Milk" };
         }
 
         CupType IBeverage.CupType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
