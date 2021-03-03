@@ -1,6 +1,7 @@
 # Project 1 - The Barista
 For the procedures used in this project see : [Procedures](Procedures.md)
 
+
 # Barista API
 In this projects should you create an Fluent API for a [barista](https://en.wikipedia.org/wiki/Barista) to create espresso based drinks using code. To get into the Barista domain have a look at [The Ultimate Beginner's Guide to Espresso](https://prima-coffee.com/learn/section/espresso) they also have a [A Beginner's Guide to Espresso](https://www.youtube.com/watch?v=-kd-zX-JOVU) video serie (5 parts).
 
