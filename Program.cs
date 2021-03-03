@@ -209,7 +209,7 @@ namespace The_barista
         public Mocha()
         {
             Name = _name;
-            Ingredients = new List<string>() { "Coffee Beans", "Chocolate Syrup", "Milk" };
+            Ingredients = new List<string>() { "Coffee Beans", "Chocolate Syrup", "Milk", "Milk Foam" };
         }
 
         CupType IBeverage.CupType { get; set; } = CupType.Medium;
