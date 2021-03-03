@@ -28,9 +28,9 @@ namespace The_barista
             //    .AddMilkFoam();
 
 
-            IBeverage macchiato = new FluentEspresso()
+            IBeverage latte = new FluentEspresso()
                 .AddCoffeeBeans(new Beans(4, "Arabica"))
-                .AddMilkFoam()
+                .AddMilk()
                 .ToBeverage();
 
             Console.WriteLine();
@@ -139,7 +139,7 @@ namespace The_barista
             Ingredients = new List<string>() { "Water", "Coffee Beans" };
         }
 
-        CupType IBeverage.CupType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        CupType IBeverage.CupType { get; set; } = CupType.Small;
     }
 
 
@@ -156,7 +156,7 @@ namespace The_barista
             Ingredients = new List<string>() { "Milk", "Coffee Beans" };
         }
 
-        CupType IBeverage.CupType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        CupType IBeverage.CupType { get; set; } = CupType.Large;
     }
 
     public class Cappucino : IBeverage
@@ -172,8 +172,7 @@ namespace The_barista
             Ingredients = new List<string>() { "Milk", "Coffee Beans", "Milk Foam" };
         }
 
-
-        CupType IBeverage.CupType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        CupType IBeverage.CupType { get; set; } = CupType.Large;
     }
 
 
@@ -191,7 +190,7 @@ namespace The_barista
             Ingredients = new List<string>() { "Coffee Beans", "Milk Foam" };
         }
 
-        CupType IBeverage.CupType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        CupType IBeverage.CupType { get; set; } = CupType.Small;
     }
 
 
@@ -206,7 +205,7 @@ namespace The_barista
             Ingredients = new List<string>() { "Coffee Beans", "Chocolate Syrup", "Milk Foam" };
         }
 
-        CupType IBeverage.CupType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        CupType IBeverage.CupType { get; set; } = CupType.Medium;
     }
 
     public class Espresso : IBeverage
@@ -222,7 +221,7 @@ namespace The_barista
             Ingredients = new List<string>() { "Coffee Beans" };
         }
 
-        CupType IBeverage.CupType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        CupType IBeverage.CupType { get; set; } = CupType.Small;
     }
 
 
@@ -232,7 +231,7 @@ namespace The_barista
 
         public string Name => throw new NotImplementedException();
 
-        CupType IBeverage.CupType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        CupType IBeverage.CupType { get; set; } = CupType.Medium;
     }
 
     public class Beans
