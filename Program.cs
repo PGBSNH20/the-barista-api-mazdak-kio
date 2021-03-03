@@ -139,7 +139,7 @@ namespace The_barista
             Ingredients = new List<string>() { "Water", "Coffee Beans" };
         }
 
-        public string CupType => throw new NotImplementedException();
+        CupType IBeverage.CupType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 
 
@@ -156,7 +156,7 @@ namespace The_barista
             Ingredients = new List<string>() { "Milk", "Coffee Beans" };
         }
 
-        public string CupType => throw new NotImplementedException();
+        CupType IBeverage.CupType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 
     public class Cappucino : IBeverage
@@ -172,7 +172,8 @@ namespace The_barista
             Ingredients = new List<string>() { "Milk", "Coffee Beans", "Milk Foam" };
         }
 
-        public string CupType => throw new NotImplementedException();
+
+        CupType IBeverage.CupType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 
 
@@ -190,7 +191,7 @@ namespace The_barista
             Ingredients = new List<string>() { "Coffee Beans", "Milk Foam" };
         }
 
-        public string CupType => throw new NotImplementedException();
+        CupType IBeverage.CupType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 
 
@@ -205,8 +206,7 @@ namespace The_barista
             Ingredients = new List<string>() { "Coffee Beans", "Chocolate Syrup", "Milk Foam" };
         }
 
-        public string CupType => throw new NotImplementedException();
-
+        CupType IBeverage.CupType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 
     public class Espresso : IBeverage
@@ -222,8 +222,7 @@ namespace The_barista
             Ingredients = new List<string>() { "Coffee Beans" };
         }
 
-        public string CupType => throw new NotImplementedException();
-
+        CupType IBeverage.CupType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 
 
@@ -231,9 +230,9 @@ namespace The_barista
     {
         public List<string> Ingredients => throw new NotImplementedException();
 
-        public string CupType => throw new NotImplementedException();
-
         public string Name => throw new NotImplementedException();
+
+        CupType IBeverage.CupType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 
     public class Beans
