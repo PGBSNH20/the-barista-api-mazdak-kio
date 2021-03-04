@@ -9,7 +9,7 @@ namespace BaristaApi.Tests
         public void When_AddingWaterAndBeansAndMilkFoam_Expect_Macchiato(){
 
             // Act
-            IBeverage macchiato = new FluentEspresso().AddCoffeeBeans(new Beans(4, "Arabica")).AddMilkFoam().ToBeverage();
+            IBeverage macchiato = new FluentEspresso().AddCoffeeBeans(new Beans(4, Beans.CoffeeBean.Arabica)).AddMilkFoam().ToBeverage();
             // Assert
             Assert.IsType<Macchiato>(macchiato);
         }
@@ -19,7 +19,7 @@ namespace BaristaApi.Tests
         {
 
             // Act
-            IBeverage latte = new FluentEspresso().AddCoffeeBeans(new Beans(4, "Arabica")).AddMilk().ToBeverage();
+            IBeverage latte = new FluentEspresso().AddCoffeeBeans(new Beans(4, Beans.CoffeeBean.Arabica)).AddMilk().ToBeverage();
             // Assert
             Assert.IsType<Latte>(latte);
         }
@@ -29,7 +29,7 @@ namespace BaristaApi.Tests
         {
 
             // Act
-            IBeverage mocha = new FluentEspresso().AddCoffeeBeans(new Beans(4, "Arabica")).AddMilk().AddMilkFoam().AddChocolateSyrup().ToBeverage();
+            IBeverage mocha = new FluentEspresso().AddCoffeeBeans(new Beans(4, Beans.CoffeeBean.Arabica)).AddMilk().AddMilkFoam().AddChocolateSyrup().ToBeverage();
             // Assert
             Assert.IsType<Mocha>(mocha);
         }

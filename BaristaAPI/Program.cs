@@ -28,10 +28,11 @@ namespace The_barista
             //    .AddMilkFoam();
 
 
-            IBeverage macchiato = new FluentEspresso()
-                .AddCoffeeBeans(new Beans(4, "Arabica"))
+            IBeverage cappucino = new FluentEspresso()
+                .AddCoffeeBeans(new Beans(4, Beans.CoffeeBean.Arabica))
                 .AddMilk()
-                .SetTemperature(100)
+                .AddMilkFoam()
+                .SetTemperature(60)
                 .ToBeverage();
 
             Console.WriteLine();

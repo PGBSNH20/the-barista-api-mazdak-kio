@@ -7,12 +7,17 @@ namespace The_barista
 
     public class Beans
     {
-        public int _amountInG;
-        public string _sort;
-        public Beans(int amountInG, string sort)
+        public int amountInG;
+        public CoffeeBean BeanType { get; set; }
+        public enum CoffeeBean
         {
-            this._amountInG = amountInG;
-            this._sort = sort;
+            Arabica,
+            Robusta
+        }
+        public Beans(int amountInG, CoffeeBean sort)
+        {
+            this.amountInG = amountInG;
+            this.BeanType = sort;
         }
     }
 }
