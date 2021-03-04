@@ -17,6 +17,6 @@ namespace The_barista
         }
 
         CupType IBeverage.CupType { get; set; } = CupType.Medium;
-        public int Temp { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public int Temp { get; set; } = 95;
     }
 }

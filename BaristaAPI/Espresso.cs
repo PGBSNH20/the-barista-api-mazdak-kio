@@ -19,6 +19,6 @@ namespace The_barista
         }
 
         CupType IBeverage.CupType { get; set; } = CupType.Small;
-        public int Temp { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int Temp { get; set; } = 90;
     }
 }
