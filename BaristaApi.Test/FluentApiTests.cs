@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using The_barista;
 using Xunit;
 
@@ -44,5 +47,35 @@ namespace BaristaApi.Tests
             // Assert
             Assert.IsType<Mocha>(mocha);
         }
+
+        //[Fact]
+        //public void TestingSomething()
+        //{
+        //    FluentEspresso fluentEspresso = new FluentEspresso();
+        //    IBeverage americano = new Americano();
+        //    List<string> Ingredients = new List<string>();
+
+        //    IBeverage desiredDrink = americano;
+        //    // Act
+        //    var drinks = new List<IBeverage>()
+        //    {
+        //        new Americano(),
+        //        new Latte(),
+        //        new Cappucino(),
+        //        new Macchiato(),
+        //        new Mocha(),
+        //        new Espresso()
+        //    };
+
+        //    if(fluentEspresso.Ingredients == americano.Ingredients)
+        //    {
+
+        //    }
+        //    else
+        //    {
+        //        // Assert
+        //        Assert.ThrowsAny<Exception>(() => desiredDrink.ToBeverage());
+        //    }
+        //}
     }
 }
