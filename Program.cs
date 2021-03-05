@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace The_barista
 {
@@ -16,24 +17,17 @@ namespace The_barista
     {
         public static void Main()
         {
-            //IFluentEspresso espresso = new FluentEspresso()
-            //    .AddHotWater(20)
-            //    .AddGrindedBeans()
-            //    .AddCoffeeBeans(new Beans(4, "Arabica"))
-            //    .AddMilk();
-
-            //IFluentEspresso cappuccino = new FluentEspresso()
-            //    .AddCoffeeBeans(new Beans(4, "Arabica"))
-            //    .AddMilk()
-            //    .AddMilkFoam();
-
+            //Func<IBeverage, bool> result = r => r.Degree > 80;
+            //Console.WriteLine(result(new Mocha()));
 
             IBeverage macchiato = new FluentEspresso()
-                .AddCoffeeBeans(new Beans(4, "Arabica"))
+                .AddCoffeeBeans(new Beans(4, "Robusta"))
                 .AddMilk()
                 .AddChocolateSyrup()
+                .AddTemp(d => d.Degree < 80)
                 .ToBeverage();
 
+            Console.WriteLine(macchiato.Name);
             Console.WriteLine();
         }
     }
@@ -42,7 +36,8 @@ namespace The_barista
     {
         public string Name { get; }
         List<string> Ingredients { get; }
-        CupType CupType { get; set;  }
+        CupType CupType { get; set; }
+        public int Degree { get; set; }
 
     }
 
@@ -54,10 +49,12 @@ namespace The_barista
         IFluentEspresso AddCoffeeBeans(Beans beans);
         IFluentEspresso AddGrindedBeans();
         IFluentEspresso AddChocolateSyrup();
+        IFluentEspresso AddTemp(Func<IBeverage, bool> degree);
         IBeverage ToBeverage();
 
     }
 
+    // Lägg till conditions så att kaffe måste väljas för att kunna få en dryck.
 
     public class FluentEspresso : IFluentEspresso
     {
@@ -110,6 +107,25 @@ namespace The_barista
             return this;
         }
 
+        public IFluentEspresso AddTemp(Func<IBeverage, bool> degree)
+        {
+            // deg är där den ska retunera ifall LINQ-satsen stämmer eller ej
+            bool deg = degree(ToBeverage());
+
+            if (deg)
+            {
+                Console.WriteLine("Perfect temperature. Enjoy your " + this.ToBeverage().Name + "!");
+                return this;
+            }
+            else if (!deg)
+            {
+                Console.WriteLine("Too cold, need to be warmer");
+                Thread.Sleep(3000);
+                Console.WriteLine("Now your " + this.ToBeverage().Name + " is at least " + this.ToBeverage().Degree + " degree Celsius, Enjoy!");
+                return this;
+            }
+            return this;
+        }
         public IBeverage ToBeverage()
         {
             var drinks = new List<IBeverage>()
@@ -125,16 +141,23 @@ namespace The_barista
             // Ser till så att drinkens lista med ingredienser matchar med de angivna listans ingredienser.
             var desiredDrink = drinks.FirstOrDefault(d => Enumerable.SequenceEqual(d.Ingredients.OrderBy(i => i), this.Ingredients.OrderBy(i => i)));
 
+            // Om inte ingredienserna matchar 
+            if (desiredDrink == null)
+            {
+                return new Other();
+            }
+
             // Tänk ifall drinken är null eller har andra ingredienser som vi inte har en klass av som ex. Espresso, Latte, ...? 
-            Console.WriteLine(desiredDrink.Name);
             return desiredDrink;
         }
 
+        
     }
 
     public class Americano : IBeverage
     {
         public List<string> Ingredients { get; private set; }
+        public int Degree { get; set; } = 90;
         public string Name { get; private set; }
 
         private string _name = "Americano";
@@ -153,6 +176,7 @@ namespace The_barista
     {
         public List<string> Ingredients { get; private set; }
         public string Name { get; private set; }
+        public int Degree { get; set; } = 80;
 
         private string _name = "Latte";
 
@@ -163,13 +187,14 @@ namespace The_barista
         }
 
         CupType IBeverage.CupType { get; set; } = CupType.Large;
+        
     }
 
     public class Cappucino : IBeverage
     {
         public List<string> Ingredients { get; private set; }
         public string Name { get; private set; }
-
+        public int Degree { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         private string _name = "Cappucino";
 
         public Cappucino()
@@ -187,6 +212,7 @@ namespace The_barista
     {
         public List<string> Ingredients { get; private set; }
         public string Name { get; private set; }
+        public int Degree { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         private string _name = "Macchiato";
 
@@ -204,6 +230,7 @@ namespace The_barista
     {
         public List<string> Ingredients { get; private set; }
         public string Name { get; private set; }
+        public int Degree { get; set; } = 90;
         private string _name = "Mocha";
 
         public Mocha()
@@ -219,6 +246,7 @@ namespace The_barista
     {
         public List<string> Ingredients { get; private set; }
         public string Name { get; private set; }
+        public int Degree { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         private string _name = "Espresso";
 
@@ -237,6 +265,7 @@ namespace The_barista
         public List<string> Ingredients => throw new NotImplementedException();
 
         public string Name => throw new NotImplementedException();
+        public int Degree { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         CupType IBeverage.CupType { get; set; } = CupType.Medium;
     }
