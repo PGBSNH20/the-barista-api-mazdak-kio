@@ -57,7 +57,7 @@ namespace The_barista
 
             return this;
         }
-        public IFluentEspresso SetTemperature(int temp)
+        public IFluentEspresso SetTemperature(int temp) // Todo Make lambda func "Func<Ibeverage, int> temp"
         {
             Temp = temp;
             return this;
@@ -73,19 +73,17 @@ namespace The_barista
                 new Cappucino(),
                 new Macchiato(),
                 new Mocha(),
-                new Espresso()
+                new Espresso(),
+                new Other(),
+                new Nothing()
             };
 
             // Ser till så att drinkens lista med ingredienser matchar med de angivna listans ingredienser.
             var desiredDrink = drinks.FirstOrDefault(d => Enumerable.SequenceEqual(d.Ingredients.OrderBy(i => i), Ingredients.OrderBy(i => i)));
-            if (Temp != desiredDrink.Temp)
-            {
-                Console.WriteLine($"{desiredDrink.Name} was brewed but the temperature was wrong\nExpected temp: {desiredDrink.Temp}\nActual Temp: {Temp}");
-            }
-            else
-            {
-                Console.WriteLine($"{desiredDrink.Name} was brewed.");
-            }
+
+            Console.WriteLine(Temp != desiredDrink.Temp
+                ? $"{desiredDrink.Name} was brewed but the temperature was wrong\nExpected temp: {desiredDrink.Temp}\nActual Temp: {Temp}"
+                : (desiredDrink.Name == "Other") ? $"{desiredDrink.Name} was brewed." : "Nothing was made");
 
             // Tänk ifall drinken är null eller har andra ingredienser som vi inte har en klass av som ex. Espresso, Latte, ...? 
             return desiredDrink;

@@ -30,9 +30,9 @@ namespace The_barista
 
             IBeverage cappucino = new FluentEspresso()
                 .AddCoffeeBeans(new Beans(4, Beans.CoffeeBean.Arabica))
-                .AddMilk()
-                .AddMilkFoam()
-                .SetTemperature(60)
+                //.AddMilk()
+                //.AddMilkFoam()
+                //.SetTemperature(64)
                 .ToBeverage();
 
             Console.WriteLine();
