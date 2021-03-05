@@ -20,16 +20,11 @@ namespace The_barista
             //Func<IBeverage, bool> result = r => r.Degree > 80;
             //Console.WriteLine(result(new Mocha()));
 
-            //IFluentEspresso cappuccino = new FluentEspresso()
-            //    .AddCoffeeBeans(new Beans(4, "Arabica"))
-            //    .AddMilk()
-            //    .AddMilkFoam();
-
-
             IBeverage macchiato = new FluentEspresso()
-                .AddCoffeeBeans(new Beans(4, "Arabica"))
+                .AddCoffeeBeans(new Beans(4, "Robusta"))
                 .AddMilk()
                 .AddChocolateSyrup()
+                .AddTemp(d => d.Degree < 80)
                 .ToBeverage();
 
             Console.WriteLine();
@@ -240,7 +235,7 @@ namespace The_barista
         public Mocha()
         {
             Name = _name;
-            Ingredients = new List<string>() { "Coffee Beans", "Chocolate Syrup", "Milk", "Milk Foam" };
+            Ingredients = new List<string>() { "Coffee Beans", "Chocolate Syrup", "Milk"};
         }
 
         CupType IBeverage.CupType { get; set; } = CupType.Medium;
