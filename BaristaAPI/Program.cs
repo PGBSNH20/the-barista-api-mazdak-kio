@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace The_barista
 {
-
+    // changes
     public enum CupType
     {
         Small,
@@ -20,14 +20,18 @@ namespace The_barista
             //Func<IBeverage, bool> result = r => r.Degree > 80;
             //Console.WriteLine(result(new Mocha()));
 
+            //IFluentEspresso cappuccino = new FluentEspresso()
+            //    .AddCoffeeBeans(new Beans(4, "Arabica"))
+            //    .AddMilk()
+            //    .AddMilkFoam();
+
+
             IBeverage macchiato = new FluentEspresso()
-                .AddCoffeeBeans(new Beans(4, "Robusta"))
+                .AddCoffeeBeans(new Beans(4, "Arabica"))
                 .AddMilk()
                 .AddChocolateSyrup()
-                .AddTemp(d => d.Degree < 80)
                 .ToBeverage();
 
-            Console.WriteLine(macchiato.Name);
             Console.WriteLine();
         }
     }
@@ -236,7 +240,7 @@ namespace The_barista
         public Mocha()
         {
             Name = _name;
-            Ingredients = new List<string>() { "Coffee Beans", "Chocolate Syrup", "Milk" };
+            Ingredients = new List<string>() { "Coffee Beans", "Chocolate Syrup", "Milk", "Milk Foam" };
         }
 
         CupType IBeverage.CupType { get; set; } = CupType.Medium;
