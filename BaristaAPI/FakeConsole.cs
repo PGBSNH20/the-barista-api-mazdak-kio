@@ -7,7 +7,7 @@ using System.Text;
 namespace The_barista
 {
     // This class is needed for testing console applications. Do not change or remove it.
-    class FakeConsole : IDisposable
+    internal class FakeConsole : IDisposable
     {
         private TextReader originalIn;
         private FakeConsoleIn fakeIn;
@@ -46,7 +46,7 @@ namespace The_barista
             Console.SetOut(originalOut);
         }
 
-        class FakeConsoleIn : TextReader
+        private class FakeConsoleIn : TextReader
         {
             private string text;
             private int index = 0;
@@ -79,11 +79,12 @@ namespace The_barista
             }
         }
 
-        class FakeConsoleOut : TextWriter
+        private class FakeConsoleOut : TextWriter
         {
             private FakeConsole console;
 
             private List<string> outputs = new List<string> { "" };
+
             public string[] Outputs
             {
                 get => outputs.ToArray();

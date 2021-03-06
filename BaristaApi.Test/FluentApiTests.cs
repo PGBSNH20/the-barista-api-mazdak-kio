@@ -13,7 +13,7 @@ namespace BaristaApi.Tests
 
             // Act
             IBeverage macchiato = new FluentEspresso()
-                .AddCoffeeBeans(new Beans(4, "Arabica"))
+                .AddCoffeeBeans(new Beans(4, Beans.BeanType.Arabica))
                 .AddMilkFoam()
                 .ToBeverage();
             // Assert
@@ -26,7 +26,7 @@ namespace BaristaApi.Tests
 
             // Act
             IBeverage latte = new FluentEspresso()
-                .AddCoffeeBeans(new Beans(4, "Arabica"))
+                .AddCoffeeBeans(new Beans(4, Beans.BeanType.Arabica))
                 .AddMilk()
                 .ToBeverage();
             // Assert
@@ -39,7 +39,7 @@ namespace BaristaApi.Tests
 
             // Act
             IBeverage mocha = new FluentEspresso()
-                .AddCoffeeBeans(new Beans(4, "Arabica"))
+                .AddCoffeeBeans(new Beans(4, Beans.BeanType.Arabica))
                 .AddMilk()
                 .AddMilkFoam()
                 .AddChocolateSyrup()
@@ -48,34 +48,16 @@ namespace BaristaApi.Tests
             Assert.IsType<Mocha>(mocha);
         }
 
-        //[Fact]
-        //public void TestingSomething()
-        //{
-        //    FluentEspresso fluentEspresso = new FluentEspresso();
-        //    IBeverage americano = new Americano();
-        //    List<string> Ingredients = new List<string>();
+        [Fact]
+        public void When_AddingWater_Expect_Other()
+        {
 
-        //    IBeverage desiredDrink = americano;
-        //    // Act
-        //    var drinks = new List<IBeverage>()
-        //    {
-        //        new Americano(),
-        //        new Latte(),
-        //        new Cappucino(),
-        //        new Macchiato(),
-        //        new Mocha(),
-        //        new Espresso()
-        //    };
-
-        //    if(fluentEspresso.Ingredients == americano.Ingredients)
-        //    {
-
-        //    }
-        //    else
-        //    {
-        //        // Assert
-        //        Assert.ThrowsAny<Exception>(() => desiredDrink.ToBeverage());
-        //    }
-        //}
+            // Act
+            IBeverage other = new FluentEspresso()
+                .AddHotWater(100)
+                .ToBeverage();
+            // Assert
+            Assert.IsType<Other>(other);
+        }
     }
 }
