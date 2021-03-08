@@ -41,7 +41,6 @@ namespace BaristaApi.Tests
             IBeverage mocha = new FluentEspresso()
                 .AddCoffeeBeans(new Beans(4, Beans.BeanType.Arabica))
                 .AddMilk()
-                .AddMilkFoam()
                 .AddChocolateSyrup()
                 .ToBeverage();
             // Assert
